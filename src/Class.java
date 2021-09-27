@@ -1,39 +1,56 @@
+import java.util.Arrays;
 import java.util.Scanner;
-class Employee//SE4 25 RIDDHI KUMBHANI
-{
-        int empID;
-        String empname ;
-        float basicSalary;
-        float DA; float HRA; int incomeTax;
 
-    void dataOfTheEmployee()
-        {
-            Scanner INPUT = new Scanner(System.in);
-            System.out.println(" ENTER THE empID,empname,basicSalary,DA,HRA,incomeTax  : ");
-            empID= INPUT.nextInt();
-            empname = INPUT.next();
-            basicSalary = INPUT.nextFloat();
-            DA = INPUT.nextFloat();HRA= INPUT.nextFloat();incomeTax= INPUT.nextInt();
-        }
-void DisplayData()
-    {
-        System.out.println("THE GROSS SALARY IS : " + (basicSalary+DA+HRA+incomeTax));
-        System.out.println( empID+ " " + empname  +" "+  basicSalary);
+class Hotel {
+    String hotelName;
+    String city;
+    int roomCharge;
+
+    void dataOfTheHotel() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" Enter the hotel name , city and room charges:  ");
+        hotelName = sc.next();
+        city = sc.next();
+        roomCharge = sc.nextInt();
     }
- }
-class Class
-{
-     public static void main(String[] args)
-    {
-        Employee data[]= new Employee[1];
+
+    void DisplayData() {
+        System.out.println(hotelName + "\t" + city + "\t" + roomCharge);
+    }
+}
+
+class Class {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the length of the array : ");
+        int l = sc.nextInt();
+        Hotel data[] = new Hotel[l];
         {
-            for (int i = 0;i < 1; i++) {
-                data[i] = new Employee();
-                data[i].dataOfTheEmployee();
-            }System.out.println("~~~~~~~~~~~~~~~~~~EMPLOYEE DATA~~~~~~~~~~~~~~~~~~");
-           for (int i = 0;i < 1; i++) {
+            for (int i = 0; i < l; i++) {
+                data[i] = new Hotel();
+                data[i].dataOfTheHotel();
+            }
+            System.out.println("~~~~~~~~~~~~~~~~~~HOTEL DATA~~~~~~~~~~~~~~~~~~");
+            for (int i = 0; i < l; i++) {
+                data[i].DisplayData();
+            }
+            Hotel tmp;
+           for (int j = 0; j < l; j++) {
+                for (int i = 0; i < l - 1; i++) {
+                   if (data[i].roomCharge > data[i + 1].roomCharge) {
+                        tmp = data[i];
+                        data[i] = data[i + 1];
+                        data[i + 1] = tmp;
+                    }
+                }
+           }
+            System.out.println("The sorted form of the hotels is : ");
+            for (int i = 0; i < l; i++) {
                 data[i].DisplayData();
             }
         }
+
     }
 }
+
+
